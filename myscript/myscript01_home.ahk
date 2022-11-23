@@ -1136,6 +1136,31 @@ IME_SET(SetSts, WinTitle="A")    {
                 send, x 
             }
             Return
+        y::
+            if(vim_onenote==mode_nm){
+                send, y 
+                set_normal_mode()
+            }else if(vim_onenote==mode_is){
+                send, y
+            }else if(vim_onenote==mode_vs){
+                send, ^c
+                set_normal_mode()
+            }else if(vim_onenote==mode_bv){
+                send, ^c 
+                set_normal_mode()
+            }
+            Return
+        p::
+            if(vim_onenote==mode_nm){
+                send, ^v 
+            }else if(vim_onenote==mode_is){
+                send, p
+            }else if(vim_onenote==mode_vs){
+                send, p
+            }else if(vim_onenote==mode_bv){
+                send, p 
+            }
+            Return
         Space::
             if(vim_onenote==mode_nm){
                 set_spm()
