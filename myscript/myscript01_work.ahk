@@ -268,6 +268,8 @@ IME_SET(SetSts, WinTitle="A")    {
     ; Numpad8::
     ; Numpad9::
 ;---other---
+    sc07B & Tab::send !^{Tab}
+    
     ; sc079 : henkan
     ; sc07B : muhenkan
 
@@ -913,6 +915,15 @@ IME_SET(SetSts, WinTitle="A")    {
         ;         MouseClick LEFT , , , , , U,
         ;     }
         ;     Return
+        ^1::
+            send, ^!1
+            return
+        ^2::
+            send, ^!2
+            return
+        ^3::
+            send, ^!3
+            return
         Numpad1::
             send, ^m
             Sleep, 500
@@ -1126,5 +1137,44 @@ IME_SET(SetSts, WinTitle="A")    {
                 ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 10 
             }
             return
+    #IfWinActive
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; freeplane ;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+#IfWinActive, ahk_class SunAwtFrame
+    RButton::
+        Keywait, RButton, U T0.1
+        if (ErrorLevel=1){
+            ;; hold
+            MouseClick LEFT , , , , , D,
+            Keywait, RButton, U
+            MouseClick LEFT , , , , , U,
+        }else{
+            ;; click
+            MouseClick RIGHT , , , , , D,
+            MouseClick RIGHT , , , , , U,
+        }
+        return
+    wheelup::
+        send, ^{WheelUp}
+        return
+    wheeldown::
+        send, ^{WheelDown}
+        return
+#IfWinActive
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; draw io ;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    #IfWinActive, ahk_exe draw.io.exe
+    wheelup::
+        send, ^{WheelUp}
+        return
+    wheeldown::
+        send, ^{WheelDown}
+        return
+
     #IfWinActive
 
