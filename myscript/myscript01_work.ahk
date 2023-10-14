@@ -255,6 +255,7 @@ IME_SET(SetSts, WinTitle="A")    {
     ^+Down::Send  +{PgDn}
     ^+Left::Send  +{Home}
     ^+Right::Send +{End}
+    
 
 ;---num pad---
     Numpad0::send ^#t
@@ -948,6 +949,17 @@ IME_SET(SetSts, WinTitle="A")    {
             Sleep, 100
             send, o
             Return
+        Numpad2::
+            send, ^c
+            Sleep, 500
+            send, #e
+            Sleep, 500
+            send, !d
+            Sleep, 500
+            send, ^v
+            Sleep, 500
+            send, {Enter}
+            return
     #IfWinActive
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1017,126 +1029,126 @@ IME_SET(SetSts, WinTitle="A")    {
         sc07B & left:: send +{Tab}{End}
         sc07B & down:: send {Tab}+{Tab}{End}{Down}{Tab}+{Tab}{End}
         sc07B & up:: send {Tab}+{Tab}{Home}{Up}{Tab}+{Tab}{End}
-        ~Lshift & WheelUp::ComObjActive("PowerPoint.Application").ActiveWindow.SmallScroll(0,0,0,1)
-        ~Lshift & WheelDown::ComObjActive("PowerPoint.Application").ActiveWindow.SmallScroll(0,0,1,0)
-        ^WheelUp::
-            if (scroll_val>-10 && scroll_val<15) {
-                if (scroll_val == 14){
-                }else{
-                    scroll_val := scroll_val + 1
-                }
-            }
-            if (scroll_val==0){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 100 
-            }else if (scroll_val==1){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 110 
-            }else if (scroll_val==2){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 120 
-            }else if (scroll_val==3){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 130 
-            }else if (scroll_val==4){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 140 
-            }else if (scroll_val==5){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 150 
-            }else if (scroll_val==6){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 160 
-            }else if (scroll_val==7){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 170 
-            }else if (scroll_val==8){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 180 
-            }else if (scroll_val==9){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 190 
-            }else if (scroll_val==10){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 200 
-            }else if (scroll_val==11){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 210 
-            }else if (scroll_val==12){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 220 
-            }else if (scroll_val==13){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 230 
-            }else if (scroll_val==14){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 240 
-            }else if (scroll_val==15){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 250 
-            }else if (scroll_val==-1){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 90 
-            }else if (scroll_val==-2){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 80 
-            }else if (scroll_val==-3){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 70 
-            }else if (scroll_val==-4){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 60 
-            }else if (scroll_val==-5){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 50
-            }else if (scroll_val==-6){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 40 
-            }else if (scroll_val==-7){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 30 
-            }else if (scroll_val==-8){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 20 
-            }else if (scroll_val==-9){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 10 
-            }
-            return
-        ^WheelDown::
-            if (scroll_val>-10 && scroll_val<15) {
-                if (scroll_val == -9){
-                }else{
-                    scroll_val := scroll_val - 1
-                }
-            }
-            if (scroll_val==0){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 100 
-            }else if (scroll_val==1){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 110 
-            }else if (scroll_val==2){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 120 
-            }else if (scroll_val==3){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 130 
-            }else if (scroll_val==4){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 140 
-            }else if (scroll_val==5){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 150 
-            }else if (scroll_val==6){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 160 
-            }else if (scroll_val==7){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 170 
-            }else if (scroll_val==8){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 180 
-            }else if (scroll_val==9){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 190 
-            }else if (scroll_val==10){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 200 
-            }else if (scroll_val==11){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 210 
-            }else if (scroll_val==12){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 220 
-            }else if (scroll_val==13){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 230 
-            }else if (scroll_val==14){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 240 
-            }else if (scroll_val==15){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 250 
-            }else if (scroll_val==-1){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 90 
-            }else if (scroll_val==-2){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 80 
-            }else if (scroll_val==-3){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 70 
-            }else if (scroll_val==-4){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 60 
-            }else if (scroll_val==-5){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 50
-            }else if (scroll_val==-6){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 40 
-            }else if (scroll_val==-7){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 30 
-            }else if (scroll_val==-8){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 20 
-            }else if (scroll_val==-9){
-                ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 10 
-            }
-            return
+        ; ~Lshift & WheelUp::ComObjActive("PowerPoint.Application").ActiveWindow.SmallScroll(0,0,0,1)
+        ; ~Lshift & WheelDown::ComObjActive("PowerPoint.Application").ActiveWindow.SmallScroll(0,0,1,0)
+        ; ^WheelUp::
+        ;     if (scroll_val>-10 && scroll_val<15) {
+        ;         if (scroll_val == 14){
+        ;         }else{
+        ;             scroll_val := scroll_val + 1
+        ;         }
+        ;     }
+        ;     if (scroll_val==0){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 100 
+        ;     }else if (scroll_val==1){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 110 
+        ;     }else if (scroll_val==2){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 120 
+        ;     }else if (scroll_val==3){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 130 
+        ;     }else if (scroll_val==4){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 140 
+        ;     }else if (scroll_val==5){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 150 
+        ;     }else if (scroll_val==6){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 160 
+        ;     }else if (scroll_val==7){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 170 
+        ;     }else if (scroll_val==8){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 180 
+        ;     }else if (scroll_val==9){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 190 
+        ;     }else if (scroll_val==10){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 200 
+        ;     }else if (scroll_val==11){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 210 
+        ;     }else if (scroll_val==12){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 220 
+        ;     }else if (scroll_val==13){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 230 
+        ;     }else if (scroll_val==14){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 240 
+        ;     }else if (scroll_val==15){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 250 
+        ;     }else if (scroll_val==-1){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 90 
+        ;     }else if (scroll_val==-2){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 80 
+        ;     }else if (scroll_val==-3){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 70 
+        ;     }else if (scroll_val==-4){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 60 
+        ;     }else if (scroll_val==-5){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 50
+        ;     }else if (scroll_val==-6){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 40 
+        ;     }else if (scroll_val==-7){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 30 
+        ;     }else if (scroll_val==-8){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 20 
+        ;     }else if (scroll_val==-9){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 10 
+        ;     }
+        ;     return
+        ; ^WheelDown::
+        ;     if (scroll_val>-10 && scroll_val<15) {
+        ;         if (scroll_val == -9){
+        ;         }else{
+        ;             scroll_val := scroll_val - 1
+        ;         }
+        ;     }
+        ;     if (scroll_val==0){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 100 
+        ;     }else if (scroll_val==1){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 110 
+        ;     }else if (scroll_val==2){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 120 
+        ;     }else if (scroll_val==3){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 130 
+        ;     }else if (scroll_val==4){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 140 
+        ;     }else if (scroll_val==5){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 150 
+        ;     }else if (scroll_val==6){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 160 
+        ;     }else if (scroll_val==7){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 170 
+        ;     }else if (scroll_val==8){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 180 
+        ;     }else if (scroll_val==9){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 190 
+        ;     }else if (scroll_val==10){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 200 
+        ;     }else if (scroll_val==11){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 210 
+        ;     }else if (scroll_val==12){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 220 
+        ;     }else if (scroll_val==13){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 230 
+        ;     }else if (scroll_val==14){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 240 
+        ;     }else if (scroll_val==15){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 250 
+        ;     }else if (scroll_val==-1){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 90 
+        ;     }else if (scroll_val==-2){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 80 
+        ;     }else if (scroll_val==-3){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 70 
+        ;     }else if (scroll_val==-4){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 60 
+        ;     }else if (scroll_val==-5){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 50
+        ;     }else if (scroll_val==-6){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 40 
+        ;     }else if (scroll_val==-7){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 30 
+        ;     }else if (scroll_val==-8){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 20 
+        ;     }else if (scroll_val==-9){
+        ;         ComObjActive("PowerPoint.Application").ActiveWindow.View.Zoom := 10 
+        ;     }
+        ;     return
     #IfWinActive
 
 
