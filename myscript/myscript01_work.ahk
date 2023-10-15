@@ -1156,6 +1156,9 @@ IME_SET(SetSts, WinTitle="A")    {
 ;;; freeplane ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 #IfWinActive, ahk_class SunAwtFrame
+    ^Enter::
+        send {F2}
+        return
     ; work laptop cant work followed function well
     ; so, we will not use this function
     ; wheelup::
@@ -1178,4 +1181,15 @@ IME_SET(SetSts, WinTitle="A")    {
         return
 
     #IfWinActive
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; SimpleMind ;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    #IfWinActive, ahk_exe SimpleMindPro.exe
+    ^Enter::
+        send {F2}
+        return
+
+    #IfWinActive
+
 
