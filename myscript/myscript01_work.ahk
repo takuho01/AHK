@@ -1169,12 +1169,14 @@ IME_SET(SetSts, WinTitle="A")    {
             MouseClick RIGHT , , , , , U,
         }
         return
-    wheelup::
-        send, ^{WheelUp}
-        return
-    wheeldown::
-        send, ^{WheelDown}
-        return
+    ; work laptop cant work followed function well
+    ; so, we will not use this function
+    ; wheelup::
+    ;     send, ^{WheelUp}
+    ;     return
+    ; wheeldown::
+    ;     send, ^{WheelDown}
+    ;     return
 #IfWinActive
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
