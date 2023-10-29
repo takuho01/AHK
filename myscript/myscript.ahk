@@ -164,8 +164,8 @@ swithc_big_base(){
         switch_big := 0
     }
 }
-sc079::winswitch()
-+sc079::winswitch_rev()
+sc079 & 2::winswitch()
+sc079 & 1::winswitch_rev()
 sc079 & tab::swithc_big_base()
 sc079 & q::winswitch_big()
 
