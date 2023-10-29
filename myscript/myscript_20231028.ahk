@@ -1192,4 +1192,12 @@ IME_SET(SetSts, WinTitle="A")    {
 
     #IfWinActive
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; logseq ;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    #IfWinActive, ahk_exe Logseq.exe
+    ^c::
+        send {esc}
+        return
+    #IfWinActive
 
