@@ -15,12 +15,29 @@ global win06 := 724632
 global win07 := 0
 global win08 := 0
 global winsel := 1
-global array := [10881984,56365772,1836078,124327408,724632]
+global array := [ ]
 global win_index := 1
-global array_big := [1839474,1248898,19468538]
+global array_big := [ ]
 global win_index_big := 1
 global switch_big := 0
 
+browser_id := 11078592
+terminal_id := 56365772
+mindmap_id := 1248898
+onenote_id := 124327408
+logseq_id := 1836078
+excel_id := 724632
+; ppt_id := 
+array.Push(browser_id)
+array.Push(terminal_id)
+array.Push(mindmap_id)
+array.Push(onenote_id)
+array.Push(logseq_id)
+array.Push(excel_id)
+
+vscode_id := 1839474
+; hoge_id := 10203040
+array_big.Push(vscode_id)
 
 ;;; free plane ;;;
 global fp_mode := 0
@@ -106,6 +123,29 @@ IME_SET(SetSts, WinTitle="A")    {
 ;;; window layer ;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+; reset_id(){
+;     global array
+;     global array_big
+;     array.Clear()
+;     array_big.Clear()
+    
+;     browser_id := 11078592
+;     terminal_id := 56365772
+;     mindmap_id := 1248898
+;     onenote_id := 124327408
+;     excel_id := 724632
+;     ; ppt_id := 
+;     array.Push(browser_id)
+;     array.Push(terminal_id)
+;     array.Push(mindmap_id)
+;     array.Push(onenote_id)
+;     array.Push(excel_id)
+
+;     vscode_id := 1839474
+;     ; hoge_id := 10203040
+;     array_big.Push(vscode_id)
+; }
+
 winswitch(){
     global array
 
@@ -164,11 +204,12 @@ swithc_big_base(){
         switch_big := 0
     }
 }
-sc079 & 2::winswitch()
-sc079 & 1::winswitch_rev()
-sc079 & tab::swithc_big_base()
-sc079 & q::winswitch_big()
 
+; reset_id()
+sc07B & tab::swithc_big_base()
+sc07B & o::winswitch_big()
+sc07B & k::winswitch()
+sc07B & j::winswitch_rev()
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Onenote ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
