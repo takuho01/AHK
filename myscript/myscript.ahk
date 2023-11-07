@@ -23,6 +23,11 @@ global array_big := [ ]
 global win_index_big := 1
 global switch_big := 0
 global toggle_array1 := 0
+global open_window_id := 0
+global arr1_posX := 30
+global arr1_posY := 30
+global arr1_width := 1500
+global arr1_height := 1000
 
 browser_id := 2165268
 terminal_id := 56365772
@@ -341,6 +346,13 @@ check_array_rev(){
 }
 
 listup1(){
+    WinGetPos, posX, posY, width, height, ahk_id %open_window_id%
+    if (width>500 && height > 500){
+        arr1_posX := posX
+        arr1_posY := posY
+        arr1_width := width
+        arr1_height := height
+    }
     for index, value in array1{
         win_id_tmp := array1[index]
         WinMove, ahk_id %win_id_tmp%,, 0+(index-1)*300, 0, 500, 500
@@ -354,11 +366,15 @@ listup(){
     for index, value in array1{
         val := array1[index]
         if (mouse_id == val){
-            WinMove, ahk_id %mouse_id%,, 30, 30, 1500, 1000
+            WinMove, ahk_id %mouse_id%,, arr1_posX, arr1_posY, arr1_width, arr1_height
             WinActivate, ahk_id %mouse_id%
+            open_window_id := mouse_id
             toggle_array1 := 0
             break
         }
+    }
+    if (toggle_array1 == 1){
+        listup1()
     }
 }
 
