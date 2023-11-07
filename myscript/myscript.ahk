@@ -15,25 +15,28 @@ global win06 := 724632
 global win07 := 0
 global win08 := 0
 global winsel := 1
-global array := [ ]
-global win_index := 1
+global array1 := [ ]
+global array2 := [ ]
+global win_index1 := 1
+global win_index2 := 1
 global array_big := [ ]
 global win_index_big := 1
 global switch_big := 0
+global toggle_array1 := 0
 
-browser_id := 11078592
+browser_id := 2165268
 terminal_id := 56365772
 mindmap_id := 1248898
 onenote_id := 124327408
 logseq_id := 1836078
 excel_id := 724632
 ; ppt_id := 
-array.Push(browser_id)
-array.Push(terminal_id)
-array.Push(mindmap_id)
-array.Push(onenote_id)
-array.Push(logseq_id)
-array.Push(excel_id)
+; array.Push(browser_id)
+; array.Push(terminal_id)
+; array.Push(mindmap_id)
+; array.Push(onenote_id)
+; array.Push(logseq_id)
+; array.Push(excel_id)
 
 vscode_id := 1839474
 ; hoge_id := 10203040
@@ -146,15 +149,54 @@ IME_SET(SetSts, WinTitle="A")    {
 ;     array_big.Push(vscode_id)
 ; }
 
+show(){
+    WinGet, active_id, ID, A ; 'A' はアクティブなウィンドウを意味する
+    MsgBox, %active_id%
+}
+
+edit_array1(){
+    global array1
+    WinGet, active_id, ID, A ; 'A' はアクティブなウィンドウを意味する
+    push_flag := 1
+    for index, value in array1{
+        val := array1[index]
+        if (active_id == val){
+            array1.Delete(index)
+            MsgBox, removed
+            push_flag := 0
+        }
+    }
+    if (push_flag == 1){
+        array1.Push(active_id)
+        MsgBox, inserted
+    }
+}
+edit_array2(){
+    global array2
+    WinGet, active_id, ID, A ; 'A' はアクティブなウィンドウを意味する
+    push_flag := 1
+    for index, value in array2{
+        val := array2[index]
+        if (active_id == val){
+            array2.Delete(index)
+            MsgBox, removed
+            push_flag := 0
+        }
+    }
+    if (push_flag == 1){
+        array2.Push(active_id)
+        MsgBox, inserted
+    }
+}
+
 winswitch(){
     global array
-
     if (switch_big == 1){
         switch_big := 0
     }else{
         win_index := win_index + 1
         if (win_index > array.MaxIndex()){
-            win_index := 1
+            win_index := 1  
         }
     }
     win_id_tmp := array[win_index]
@@ -163,7 +205,6 @@ winswitch(){
 }
 winswitch_rev(){
     global array
-
     if (switch_big == 1){
         switch_big := 0
     }else{
@@ -204,12 +245,139 @@ swithc_big_base(){
         switch_big := 0
     }
 }
+winswitch_fixedpos1(){
+    global array1
+    win_index1 := win_index1 + 1
+    if (win_index1 > array1.MaxIndex()){
+        win_index1 := 1
+    }
+    WinGetPos, posX, posY, width, height, A
+    win_id_tmp := array1[win_index1]
+    if (win_index1 == 1){
+        WinMove, ahk_id %win_id_tmp%,, posX-200*(array1.MaxIndex()-1), posY, width, height
+    }else{
+        WinMove, ahk_id %win_id_tmp%,, posX+200, posY, width, height
+    }
+    WinActivate, ahk_id %win_id_tmp%
+}
+winswitch_fixedpos1_rev(){
+    global array1
+    win_index1 := win_index1 - 1
+    if (win_index1 == 0){
+        win_index1 := array1.MaxIndex()
+    }
+    WinGetPos, posX, posY, width, height, A
+    win_id_tmp := array1[win_index1]
+    if (win_index1 == 1){
+        WinMove, ahk_id %win_id_tmp%,, posX-100*(array1.MaxIndex()-1), posY, width, height
+    }else{
+        WinMove, ahk_id %win_id_tmp%,, posX+100, posY, width, height
+    }
+    WinActivate, ahk_id %win_id_tmp%
+}
+winswitch_fixedpos2(){
+    global array2
+    win_index2 := win_index2 + 1
+    if (win_index2 > array2.MaxIndex()){
+        win_index2 := 1
+    }
+    WinGetPos, posX, posY, width, height, A
+    win_id_tmp := array2[win_index2]
+    if (win_index2 == 1){
+        WinMove, ahk_id %win_id_tmp%,, posX-30*(array2.MaxIndex()-1), posY, width, height
+    }else{
+        WinMove, ahk_id %win_id_tmp%,, posX+30, posY, width, height
+    }
+    WinActivate, ahk_id %win_id_tmp%
+}
+winswitch_fixedpos2_rev(){
+    global array2
+    win_index2 := win_index2 - 1
+    if (win_index2 == 0 ){
+        win_index2 := array2.MaxIndex()
+    }
+    WinGetPos, posX, posY, width, height, A
+    win_id_tmp := array2[win_index2]
+    if (win_index2 == 1){
+        WinMove, ahk_id %win_id_tmp%,, posX-30*(array2.MaxIndex()-1), posY, width, height
+    }else{
+        WinMove, ahk_id %win_id_tmp%,, posX+30, posY, width, height
+    }
+    WinActivate, ahk_id %win_id_tmp%
+}
+check_array(){
+    WinGet, active_id, ID, A ; 'A' はアクティブなウィンドウを意味する
+    for index, value in array1{
+        val := array1[index]
+        if (active_id == val){
+            winswitch_fixedpos1()
+            break
+        }
+    }
+    for index, value in array2{
+        val := array2[index]
+        if (active_id == val){
+            winswitch_fixedpos2()
+            break
+        }
+    }
+}
+check_array_rev(){
+    WinGet, active_id, ID, A ; 'A' はアクティブなウィンドウを意味する
+    for index, value in array1{
+        val := array1[index]
+        if (active_id == val){
+            winswitch_fixedpos1_rev()
+            break
+        }
+    }
+    for index, value in array2{
+        val := array2[index]
+        if (active_id == val){
+            winswitch_fixedpos2_rev()
+            break
+        }
+    }
+}
 
-; reset_id()
-sc07B & tab::swithc_big_base()
+listup1(){
+    for index, value in array1{
+        win_id_tmp := array1[index]
+        WinMove, ahk_id %win_id_tmp%,, 0+(index-1)*300, 0, 500, 500
+        WinActivate, ahk_id %win_id_tmp%
+    }
+    toggle_array1 := 1
+}
+
+listup(){
+    MouseGetPos, , , mouse_id
+    for index, value in array1{
+        val := array1[index]
+        if (mouse_id == val){
+            WinMove, ahk_id %mouse_id%,, 30, 30, 1500, 1000
+            WinActivate, ahk_id %mouse_id%
+            toggle_array1 := 0
+            break
+        }
+    }
+}
+
+switch_array1(){
+    if (toggle_array1 == 0){
+        listup1()
+    }else{
+        listup()
+    }
+}
+
+
 sc07B & o::winswitch_big()
 sc07B & k::winswitch()
 sc07B & j::winswitch_rev()
+
+sc07B & 1::edit_array1()
+sc07B & 2::edit_array2()
+sc07B & tab::switch_array1()
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Onenote ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
