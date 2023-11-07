@@ -156,36 +156,36 @@ show(){
 
 edit_array1(){
     global array1
-    WinGet, active_id, ID, A ; 'A' はアクティブなウィンドウを意味する
+    MouseGetPos, , , active_id
     push_flag := 1
     for index, value in array1{
         val := array1[index]
         if (active_id == val){
-            array1.Delete(index)
-            MsgBox, removed
+            array1.RemoveAt(index)
+            MsgBox, 4, , removed, 0.5
             push_flag := 0
         }
     }
     if (push_flag == 1){
         array1.Push(active_id)
-        MsgBox, inserted
+        MsgBox, 4, , inserted, 0.5
     }
 }
 edit_array2(){
     global array2
-    WinGet, active_id, ID, A ; 'A' はアクティブなウィンドウを意味する
+    MouseGetPos, , , active_id
     push_flag := 1
     for index, value in array2{
         val := array2[index]
         if (active_id == val){
-            array2.Delete(index)
-            MsgBox, removed
+            array2.RemoveAt(index)
+            MsgBox, 4, , removed, 0.5
             push_flag := 0
         }
     }
     if (push_flag == 1){
         array2.Push(active_id)
-        MsgBox, inserted
+        MsgBox, 4, , inserted, 0.5
     }
 }
 
@@ -377,6 +377,8 @@ sc07B & j::winswitch_rev()
 
 sc07B & 1::edit_array1()
 sc07B & 2::edit_array2()
+sc07B & LButton::switch_array1()
+sc07B & RButton::edit_array1()
 sc07B & tab::switch_array1()
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Onenote ;;;;;;;;;;;;;;;;;;;;;;;;;
