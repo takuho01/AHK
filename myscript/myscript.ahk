@@ -490,22 +490,22 @@ sc07B & tab::switch_array1()
 ;;; Power Point ;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     #IfWinActive,ahk_exe POWERPNT.EXE
-        ^Enter::
-            send !2
-            send !{Up}
-            send {down}
-            return
-        +^Enter::
-            send !1
-            send !{Up}
-            send {down}
-            return
-        ^BackSpace::
-            send !5
-            send {Left}{Right}
-            return
-        Tab:: send !8
-        +Tab:: send !7
+        ; ^Entter::
+        ;     send !2
+        ;     send !{Up}
+        ;     send {down}
+        ;     return
+        ; +^Enter::
+        ;     send !1
+        ;     send !{Up}
+        ;     send {down}
+        ;     return
+        ; ^BackSpace::
+        ;     send !5
+        ;     send {Left}{Righ}
+        ;     return
+        Tab:: send !2
+        +Tab:: send !1
         ^Up::Send    ^{Up}
         ^Down::Send  ^{Down}
         ^Left::Send  ^{Left}
@@ -568,6 +568,7 @@ sc07B & tab::switch_array1()
             send, i
         }
         return 
+        
     h::
         if (fp_mode==0){
             send, {left}
