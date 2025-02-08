@@ -47,8 +47,6 @@ vscode_id := 1839474
 ; hoge_id := 10203040
 array_big.Push(vscode_id)
 
-;;; free plane ;;;
-global fp_mode := 0
 
 ;;; IME change function ;;;
 IME_GET(WinTitle="A")  {
@@ -506,14 +504,12 @@ sc07B & tab::switch_array1()
         ;     return
         Tab:: send !2
         +Tab:: send !1
-        ^Up::Send    ^{Up}
-        ^Down::Send  ^{Down}
-        ^Left::Send  ^{Left}
-        ^Right::Send ^{Right}
-        ^+Up::Send    ^+{Up}
-        ^+Down::Send  ^+{Down}
-        ^+Left::Send  ^+{Left}
-        ^+Right::Send ^+{Right}
+        ^Up::Send    {PgUp}
+        ^Down::Send  {PgDn}
+        ^Left::Send  {Home}
+        ^Right::Send {End}
+        ^+Left::Send  +{Home}
+        ^+Right::Send +{End}
     #IfWinActive
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -552,125 +548,7 @@ sc07B & tab::switch_array1()
 ;;; freeplane ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 #IfWinActive, ahk_class SunAwtFrame
-    ^Enter:: 
-        send, {F2}
-        fp_mode := 1
-        return
-    ^+c::send, ^c 
-    ^+v::send, ^v
-    i::
-        if (fp_mode==0){
-            send, {F2}
-            fp_mode := 1
-        }else if (fp_mode==1){
-            send, i
-        }else if (fp_mode==2){
-            send, i
-        }
-        return 
-        
-    h::
-        if (fp_mode==0){
-            send, {left}
-        }else if (fp_mode==1){
-            send, h 
-        }else if (fp_mode==2){
-            send, h 
-        }
-        return 
-    j::
-        if (fp_mode==0){
-            send, {down}
-        }else if (fp_mode==1){
-            send, j 
-        }else if (fp_mode==2){
-            send, j 
-        }
-        return 
-    k::
-        if (fp_mode==0){
-            send, {up}
-        }else if (fp_mode==1){
-            send, k 
-        }else if (fp_mode==2){
-            send, k 
-        }
-        return 
-    l::
-        if (fp_mode==0){
-            send, {right}
-        }else if (fp_mode==1){
-            send, l 
-        }else if (fp_mode==2){
-            send, l 
-        }
-        return 
-    x::
-        if (fp_mode==0){
-            send, ^x
-        }else if (fp_mode==1){
-            send, x 
-        }else if (fp_mode==2){
-            send, x 
-        }
-        return 
-    y::
-        if (fp_mode==0){
-            send, ^c 
-        }else if (fp_mode==1){
-            send, y 
-        }else if (fp_mode==2){
-            send, y 
-        }
-        return 
-    p::
-        if (fp_mode==0){
-            send, ^v 
-        }else if (fp_mode==1){
-            send, p 
-        }else if (fp_mode==2){
-            send, p 
-        }
-        return 
-    Enter::
-        send, {Enter}
-        fp_mode := 1
-        return
-    ^c::
-        if (fp_mode==0){
-            send, {Esc}
-            fp_mode := 0
-        }else if (fp_mode==1){
-            send, {Esc}
-            fp_mode := 0
-        }else if (fp_mode==2){
-            send, {Enter}
-            ; send, {Esc}
-            fp_mode := 0
-        }
-        return 
-    u::
-        if (fp_mode==0){
-            send, ^z
-        }else if (fp_mode==1){
-            send, u 
-        }else if (fp_mode==2){
-            send, u
-        }
-        return 
-    ^r::
-        if (fp_mode==0){
-            send, ^y
-        }else if (fp_mode==1){
-            send, ^r
-        }else if (fp_mode==2){
-            send, ^r 
-        }
-        return 
-    Tab::
-        send, {Tab}
-        fp_mode := 1 
-        return
+    ^Enter:: send, {F2}
 #IfWinActive
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
