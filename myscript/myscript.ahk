@@ -398,52 +398,6 @@ sc07B & tab::switch_array1()
 ;;; Onenote ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     #IfWinActive,ahk_exe ONENOTE.EXE
-        ^0::
-            send, ^+n
-            return
-        ^1::
-            send, ^!1
-            send, ^8
-            return
-        ^2::
-            send, ^!2
-            send, ^9
-            return
-        ^3::
-            send, ^!3
-            return
-        ^q::
-            send, !w
-            Sleep, 100
-            send, t
-            Return
-        ^+Enter::
-            ; set_insert_mode()
-            send, !j
-            Sleep, 100
-            send, l
-            Sleep, 100
-            send, v
-            ; set_normal_mode()
-            Return
-        ^BackSpace::
-            send, !j
-            Sleep, 100
-            send, l
-            Sleep, 100
-            send, w
-            Return
-        Numpad0:: 
-            send, {Alt}
-            Sleep, 100
-            send, w
-            Sleep, 100
-            send, z
-            Sleep, 100
-            send, w
-            Sleep, 100
-            send, o
-            Return
     #IfWinActive
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -470,14 +424,12 @@ sc07B & tab::switch_array1()
             send ^-
             send {Up}{Down}
             return
-        ^Up::Send    ^{Up}
-        ^Down::Send  ^{Down}
-        ^Left::Send  ^{Left}
-        ^Right::Send ^{Right}
-        ^+Up::Send    ^+{Up}
-        ^+Down::Send  ^+{Down}
-        ^+Left::Send  ^+{Left}
-        ^+Right::Send ^+{Right}
+        ^Up::Send    {PgUp}
+        ^Down::Send  {PgDn}
+        ^Left::Send  {Home}
+        ^Right::Send {End}
+        ^+Left::Send  +{Home}
+        ^+Right::Send +{End}
         +WheelUp:: send +^{WheelUp}
         +WheelDown:: send +^{WheelDown}
         ^Tab:: send !6
